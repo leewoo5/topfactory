@@ -27,8 +27,15 @@ body {
 
 	background-color: #006699;
 }
-.navbar {
-	background-color: #006699;
+.navbar-default .container-fluid  {
+	background-color: #00334d;
+}
+.navbar-default  {
+	border: none;
+}
+#logo {
+	color: white;
+	font-size: 20px;
 }
 .section {
 	height: 100%;
@@ -37,24 +44,16 @@ body {
 </style>
 </head>
 <body>
-	<div class="container-fluid">
-		<nav class="navbar">
+	<div id="wrapper">
+		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					
+					<button></button>
+					<a><img alt="" src=""></a>
 				</div>
-				<p class="text-center">Page 3</p]>
 			</div>
 		</nav>
-		<div class="row">
-			<div class="col-sm-4" ></div>
-		  <div class="section col-xs-12 col-sm-4 text-center" >
-		</div>
-		  <div class="col-sm-4" ></div>
-		<!-- end row -->
-		</div>
-		<!-- end container -->  
-		</div>	
+	</div>	
 </body>
 <script>
 </script>
