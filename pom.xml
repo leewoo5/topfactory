@@ -264,5 +264,5 @@
 		</plugins>
 	</build>
 	<artifactId>Library</artifactId>
-	<name>Library</name>
+	<name>project01</name>
 </project>
