@@ -9,9 +9,9 @@ public interface UserDAO {
 
 	public UserVO login(LoginDTO dto)throws Exception;
 
-  public void keepLogin(String uid, String sessionId, Date next);
+	public void keepLogin(String uid, String sessionId, Date next);
   
-  public UserVO checkUserWithSessionKey(String value);	
+	public UserVO checkUserWithSessionKey(String value);	
 }
 
 
