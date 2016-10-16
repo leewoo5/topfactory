@@ -5,9 +5,7 @@
 <title>form.jsp</title>
 <%@ include file="../include/header.jsp" %>
 <style type="text/css">
-* {
-/*   	border: 1px solid white;    */
-}
+* {border: 0px solid white;}
 body {background-color: #004466;}
 .space {visibility: hidden; height: 10%;}
 .sidenav {height: 100%;}
@@ -21,21 +19,21 @@ input {margin-bottom: 10px;}
 </style>
 </head>
 <body>
-	<c:if test="${login.uname == null}">
+	<c:if test="${login.uid == null}">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-1 col-sm-5 sidenav"></div>
 				<div class="col-xs-10 col-sm-2">
 					<div class="space"></div>
-					<form action="/user/form" role="form" method="post">
+					<form action="/member/form" role="form" method="post">
 						<label for="id">ID</label>
 						<input class="form-control" id="id" name="uid" type="text" value="dsa"/>
 						
 						<label for="pw">Password</label>
 						<input class="form-control" id="pw" name="upw" type="password" value="dsa"/>
 						
-						<label for="name">Name</label>
-						<input class="form-control" id="name" name="uname" type="text" value="dsa"/>
+						<label for="nickName">NickName</label>
+						<input class="form-control" id="nickName" name="nickName" type="text" value="dsa"/>
 						
 						<label for="email">Email</label>
 						<input class="form-control" id="email" name="email" type="email" value="dsa@gmail.com"/>
@@ -56,10 +54,9 @@ input {margin-bottom: 10px;}
 			<div class="col-xs-1 col-sm-5 sidenav"></div>
 			</div>
 		</div>
-		
-		
 	</c:if>
-	<c:if test="${login.uname != null }">
+	
+	<c:if test="${login.uid != null }">
 	<script type="text/javascript">
 		location.href = "/";
 	</script>

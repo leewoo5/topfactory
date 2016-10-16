@@ -4,12 +4,13 @@ public class LoginDTO {
 	
 	private String uid;
 	private String upw;
-	private String uname;
-	public String getUname() {
-		return uname;
+	private String nickName;
+
+	public String getNickName() {
+		return nickName;
 	}
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	private boolean useCookie;
@@ -34,7 +35,7 @@ public class LoginDTO {
 	
 	@Override
 	public String toString() {
-		return "LoginDTO [uid=" + uid + ", upw=" + upw + ", useCookie="
+		return "LoginDTO [uid=" + uid + ", upw=" + upw + "nickName=" + nickName + ", useCookie="
 				+ useCookie + "]";
 	}
 	

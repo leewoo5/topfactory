@@ -26,6 +26,7 @@
 
 	<context:component-scan base-package="org.zerock.controller" />
 	<context:component-scan base-package="org.zerock.restcontroller" />
+	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
@@ -48,33 +49,15 @@
 			<mapping path="/user/loginPost" />
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
-		
-	  
- 	  <interceptor>
- 	  	<mapping path="/user/logininfo"/>
- 	    <mapping path="/member/delete"/>
- 	    <mapping path="/semp/list"/>
- 	    <mapping path="/notice/*"/>
- 	    <mapping path="/user/logininfo"/>
- 	    <mapping path="/qboard/readPage"/>
- 	    <mapping path="/qboard/register"/>
- 	    <mapping path="/qboard/modify"/>
- 	    <mapping path="/qboard/modifyPage"/>
- 	    <mapping path="/gboard/register" />
-		<mapping path="/gboard/modifyPage" />
-		<mapping path="/gboard/removePage" />
-		<mapping path="/tboard/register"/>
-	    <mapping path="/tboard/modifyPage"/>
-	    <mapping path="/tboard/removePage"/>
-	    <mapping path="/comic/register"/>
-	    <beans:ref bean="authInterceptor"/>
-	  </interceptor>	
-	  		
+
 	</interceptors>
 	
 	
 
-	<!-- <interceptor> <mapping path="/doA"/> <mapping path="/doB"/> <beans:ref 
-		bean="sampleInterceptor"/> </interceptor> -->
+	<!-- <interceptor> 
+		<mapping path="/doA"/>
+		<mapping path="/doB"/> 
+		<beans:ref bean="sampleInterceptor"/>
+	</interceptor> -->
 
 </beans:beans>

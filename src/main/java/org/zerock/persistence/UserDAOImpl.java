@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.zerock.domain.UserVO;
+import org.zerock.domain.User;
 import org.zerock.dto.LoginDTO;
 
 @Repository
@@ -17,12 +17,12 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace ="org.zerock.mapper.UserMapper";	
+	private static String namespace ="org.zerock.mapper.userMapper";	
 
 	@Override
-	public UserVO login(LoginDTO dto) throws Exception {
+	public User FindByUserId(LoginDTO dto) throws Exception {
 		
-		return session.selectOne(namespace +".login", dto);
+		return session.selectOne(namespace +".findByUserId", dto);
 	}
 	
   @Override
@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
   }
 
   @Override
-  public UserVO checkUserWithSessionKey(String value) {
+  public User checkUserWithSessionKey(String value) {
 
     return session.selectOne(namespace +".checkUserWithSessionKey", value);
   }	
