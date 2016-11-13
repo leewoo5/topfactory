@@ -15,5 +15,6 @@ public class MemberServiceImpl implements MemberService {
   public void register(Member member) throws Exception {
 	  dao.register(member);
   }
+
   
 }

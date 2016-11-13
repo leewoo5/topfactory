@@ -5,25 +5,20 @@
 <head>
 <%@ include file="include/header.jsp" %>
 <title>Home</title>
+<%@ include file="include/topmenucss.jsp" %>
 <style>
-* {border: 0px solid white;	box-sizing: border-box;}
+* {border: 0px solid black;	box-sizing: border-box;}
 body {background-color: #004466;}
 #wrapper {height: 100%;}
 .sidenav {height: 100%;}
-nav {background-color: #00334d;	position: absolute;}
-nav a {font-size: 20px;	color: white;}
-.nav-justified>li>a{margin: 0px;}
 #container {padding-left: 0%; padding-right: 0%; margin: 0px;}
 #content {
-	background-color: #00334d;
-	opacity: 0.5;
-	height: 1700px;
-	z-index: -2;
-	position: absolute;
-	width: 100%;
-	padding: 0px;
-	margin: 0px;
+	background-color: white;
+	height: auto;
 }
+a{color: black;}
+ul{padding:0px;}
+ul li{list-style: none; margin-top:1%; margin-bottom:1%;}
 .timeline {background-color: #00334d; padding: 0px; margin-bottom: 5%;}
 .review {background-color: white; padding-top: 2%; padding-bottom: 2%;}
 .cover{ height:120px; width: 30%; margin: 3%; position: absolute;}
@@ -41,105 +36,61 @@ p {margin: 0px;}
 .signs{margin-bottom: 5%;}
 .sign{padding-top: 5%; padding-bottom: 5%;}
 footer .signs{margin-bottom: 1%;}
-#copyright{color: white; font-weight: bold; font-size: 11px;}
+#copyright{color: white; font-weight: bold; font-size: 11px; background-color: #00334d; padding-top: 4%; padding-bottom: 4%; }
 footer .timeline{padding-bottom: 5%;}
-<%@ include file="include/stars_css.jsp" %>
 </style>
 
 </head>
 <body>
 	<div id="wrapper">
-		<nav class="navbar">
-			<ul class="nav nav-pills nav-justified">
-				<li><a class="text-center" href="/">BookStory Beta 1.0</a></li>
-			</ul>
-		</nav>
-		<!-- timeline start -->
+		<!-- 탑메뉴 -->
+		<%@ include file ="include/topmenu.jsp" %>
+		<!-- 컨텐츠 start -->
 		<div class="container-fluid">
 			<div class="row">
 				<div class="sidenav col-xs-1 col-sm-4"></div>
-				
-				<div id="container" class="col-xs-10 col-sm-4">
-					
-					<div id="content"></div>
-					
-					<!-- 로그인 안 했을 때 -->
-					<c:if test="${User.uid == null}">
+				<div id="container" class="col-xs-10 col-md-4">
+					<!-- 로그인 메뉴 -->
 					<div class="signs btn-group btn-group-justified">
 						<div class="btn-group">
-							<a class="sign btn btn-primary btns" href="/user/login">로그인</a>
+							<c:if test="${User.uid == null}">
+								<a class="sign btn btn-primary btns" href="/user/login">로그인</a>
+							</c:if>
+							<c:if test="${User.uid != null}">
+								<c<a class="sign btn btns"><span id="nickName">${User.nickName}</span></a>
+							</c:if>
 						</div>
 						<div class="btn-group">
-							<a class="sign btn btn-danger btns" href="/member/form">회원가입</a>
+							<c:if test="${User.uid == null}">
+								<a class="sign btn btn-danger btns" href="/member/form">회원가입</a>
+							</c:if>
+							<c:if test="${User.uid != null}">
+								<a class="sign btn btns" href="#">나의 정보</a>
+							</c:if>	
 						</div>
 					</div>
-					</c:if>
-					
-					<!-- 로그인 했을 때 -->
-					<c:if test="${User.uid != null}">
-					<div class="signs btn-group btn-group-justified">
-						<div class="btn-group">
-							<a class="sign btn btns"><span id="nickName">${User.nickName}</span></a>
-						</div>
-						<div class="btn-group">
-							<a class="sign btn btns" href="#">나의 정보</a>
-						</div>
+					<!-- 본문 -->
+					<div id="content" class="container-fluid">
+						<h4 class="text-center">메뉴를 선택하세요</h2>
+						<ul class="text-center">
+							<li><a href="/member/info">회원정보</a></li>
+							<li><a href="">재무정보</a></li>
+							<li><a href="">행사정보</a></li>
+							<li><a href="">멘토멘티</a></li>
+							<li><a href="">단체문자 발송</a></li>
+						</ul>
 					</div>
-					</c:if>
-
-					<div class="timeline">
-						<img style="display: inline-block;" class="cover" alt="bookcover" src="/resources/image/book1.jpg"/>
-						<div id="discri" style="display: inline-block;">
-							<p class="title">소프트웨어 개발의 모든 것</p>
-							<p class="author">김태균</p>
-							<p class="publisher">미래북</p>
-							<p class="price">25,000</p>
-							<!--평점 -->
-							<%@ include file="include/stars_html.jsp" %>
+					<!-- footer -->
+					<footer>
+						<div class="signs btn-group btn-group-justified">
+							<p id="copyright" class="btn-group-justified text-center">
+								Copyright. T.O.P factory all rights reserved.
+							</p>
 						</div>
-						<div class="review">
-							<p class="info">김철수님이 이 책을 읽었습니다.</p>
-							<p class="time"><i class="fa fa-clock-o"></i> 1시간 전</p>
-							<textarea class="form-control" rows="5" readonly="readonly">test: 30대에게 추천하는 책</textarea>
-						</div>
-						<div class="text-right">
-							<a class="btn"><i class="fa fa-heart"></i>&nbsp&nbsp0</a>
-							<a class="btn"><i class="fa fa-align-justify"></i>&nbsp&nbsp0</a>
-							<a class="btn"><i class="fa fa-share-alt"></i>&nbsp&nbsp0</a>
-							<a class="btn"><i class="fa fa-shopping-cart"></i>&nbsp&nbsp0</a>
-						</div>
-					</div>
-					
-					<c:if test="${not empty User.uid}">
-						<footer>
-							<div class="timeline">
-								<div class="signs btn-group btn-group-justified">
-									<div class="btn-group">
-										<a href="/user/logout" class="sign btn btns">로그아웃</a>
-									</div>
-								</div>
-								<p id="copyright" class="btn-group-justified text-center">
-									Copyright. BOOKSTORY all rights reserved.
-								</p>
-							</div>
-						</footer>
-					</c:if>
-					<c:if test="${empty User.uid}">
-						<footer>
-							<div class="signs btn-group btn-group-justified">
-								<div class="btn-group">
-									<a href="/member/form" class="sign btn btns">BookStory 시작하기</a>
-								</div>
-								<p id="copyright" class="btn-group-justified text-center">
-									Copyright. BOOKSTORY all rights reserved.
-								</p>
-							</div>
-						</footer>
-					</c:if>
-					
+					</footer>
 				</div>
 			</div>			
-			<div class="sidenav col-xs-1 col-sm-4"></div>
+			<div class="sidenav col-xs-1 col-md-4"></div>
 			</div>
 		</div>
 	<!-- wrapper end -->

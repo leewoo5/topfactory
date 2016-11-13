@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.topMemberMapper">
+	<insert id="register">
+		insert into tbl_topmember (name, age, gender, studentNum, department, address, job, stage, prize, phone, position, email) 
+								values(#{name}, #{gender}, #{age}, #{studentNum}, #{department}, #{address}, #{job}, #{stage},
+										#{prize}, #{phone}, #{position}, #{email})
+	</insert>
+	<select id="selectAll" resultType="org.zerock.domain.TopMember">
+		select name, gender, stage, department, phone from tbl_topmember
+	</select>
+	<select id="memberInfo" resultType="org.zerock.domain.TopMember">
+		select * from tbl_topmember where studentNum=#{studentNum}
+	</select>
+	<update id="update">
+		update tbl_board_book set 
+		name =#{name}, 
+		age =#{age}, 
+		gender =#{gender}, 
+		studentNum =#{studentNum}, 
+		department =#{department}, 
+		address =#{address}, 
+		job =#{job}, 
+		stage =#{stage}, 
+		prize =#{prize}, 
+		phone =#{phone}, 
+		position =#{position}, 
+		mail =#{mail}
+	</update>
+
+<!-- 	<delete id="delete"> -->
+<!-- 		delete from tbl_board_book where bno = #{bno} -->
+<!-- 	</delete>  -->
+<!-- 	</update>	 -->
+	
+	
+	
+</mapper>
