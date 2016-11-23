@@ -50,7 +50,7 @@ public class LoginController {
 	   }
 	   logger.info("로그인 성공");
 	   model.addAttribute("result", "로그인이 성공했습니다.");
-	   session.setAttribute("User", user);
+	   session.setAttribute("user", user);
 
 	   if (dto.isUseCookie()) {
 		   int amount = 60 * 60 * 24 * 7;

@@ -2,6 +2,8 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.zerock.domain.Overview;
+import org.zerock.domain.SearchCriteria;
 import org.zerock.domain.TopMember;
 
 public interface TopMemberService {
@@ -12,7 +14,16 @@ public interface TopMemberService {
 
 	void update(TopMember member)throws Exception;
 
-	TopMember getMemberInfo();
+	TopMember getMemberInfo(String studentNum);
+
+	Overview overview();
+
+	void delete(String studentNum);
+
+	List<TopMember> listSearchCriteria(SearchCriteria cri);
+
+	int listSearchCount(SearchCriteria cri);
+
 
 
 }

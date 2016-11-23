@@ -6,17 +6,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.topMemberMapper">
 	<insert id="register">
 		insert into tbl_topmember (name, age, gender, studentNum, department, address, job, stage, prize, phone, position, email) 
-								values(#{name}, #{gender}, #{age}, #{studentNum}, #{department}, #{address}, #{job}, #{stage},
+								values(#{name}, #{age}, #{gender}, #{studentNum}, #{department}, #{address}, #{job}, #{stage},
 										#{prize}, #{phone}, #{position}, #{email})
 	</insert>
 	<select id="selectAll" resultType="org.zerock.domain.TopMember">
-		select name, gender, stage, department, phone from tbl_topmember
+		select name, studentNum, stage, department, phone from tbl_topmember
 	</select>
 	<select id="memberInfo" resultType="org.zerock.domain.TopMember">
 		select * from tbl_topmember where studentNum=#{studentNum}
 	</select>
+	<select id="overview_members" resultType="int">
+		select count(name) as members 
+		from tbl_topmember
+	</select>
+	<select id="overview_business" resultType="int">
+		select count(department) as business 
+		from tbl_topmember
+	</select>
+	<select id="overview_etc" resultType="int">
+		select count(department) as etc
+		from tbl_topmember
+		where not department = '경영학과'
+	</select>
+	<select id="overview_male" resultType="int">
+		select count(gender) as male
+		from tbl_topmember
+		where gender = '남'
+	</select>
+	<select id="overview_female" resultType="int">
+		select count(gender) as female
+		from tbl_topmember
+		where gender = '여'
+	</select>
+	<select id="overview_prize" resultType="int">
+		select count(prize) as prize
+		from tbl_topmember
+		where prize like '수상명:%'
+	</select>
 	<update id="update">
-		update tbl_board_book set 
+		update tbl_topmember set 
 		name =#{name}, 
 		age =#{age}, 
 		gender =#{gender}, 
@@ -28,14 +56,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		prize =#{prize}, 
 		phone =#{phone}, 
 		position =#{position}, 
-		mail =#{mail}
+		email =#{email}
+		where studentNum=#{studentNum}
 	</update>
+	<delete id="delete">
+		delete from tbl_topmember where studentNum = #{studentNum}
+	</delete> 
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'name'.toString()">
+				and name =#{keyword}
+			</if>
+			<if test="searchType == 'studentNum'.toString()">
+				and studentNum =#{keyword}
+			</if>
+			<if test="searchType == 'stage'.toString()">
+				and stage =#{keyword}
+			</if>
+		</if>
+	</sql>
+	<select id="listSearch" resultType="org.zerock.domain.TopMember">
+		select * 
+		from tbl_topmember
+		where studentNum is not null
+		<include refid="search"></include>
+		order by studentNum desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
 
-<!-- 	<delete id="delete"> -->
-<!-- 		delete from tbl_board_book where bno = #{bno} -->
-<!-- 	</delete>  -->
-<!-- 	</update>	 -->
-	
+	<select id="listSearchCount" resultType="int">
+		select count(studentNum) 
+		from tbl_topmember 
+		where studentNum is not null
+		<include refid="search"></include>
+	</select>
 	
 	
 </mapper>

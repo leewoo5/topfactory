@@ -26,6 +26,8 @@
 
 	<context:component-scan base-package="org.zerock.controller" />
 	<context:component-scan base-package="org.zerock.restcontroller" />
+
+	
 	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

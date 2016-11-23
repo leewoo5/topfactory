@@ -1,21 +1,23 @@
 package org.zerock.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.Member;
+import org.zerock.domain.Overview;
+import org.zerock.domain.PageMaker;
+import org.zerock.domain.SearchCriteria;
 import org.zerock.domain.TopMember;
 import org.zerock.service.MemberService;
-import org.zerock.service.MemberServiceImpl;
 import org.zerock.service.TopMemberService;
-import org.zerock.service.TopMemberServiceImple;
 
 @Controller
 @RequestMapping(value= "/member/*")
@@ -42,7 +44,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public void topMemberInfo() {
 		logger.info("topMemberInfo()...");
 	}
@@ -60,27 +62,54 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/top_listAll", method = RequestMethod.GET)
-	public void topMemberListAll(Model model) {
+	public void topMemberListAll(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("topMemberList()...");
-		List<TopMember>members = service_top.memberList();
-		model.addAttribute("list", members);
+	    logger.info(cri.toString());
+	    Overview view = service_top.overview();
+	    
+	    model.addAttribute("list", service_top.listSearchCriteria(cri));
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalCount(service_top.listSearchCount(cri));
+		
+		model.addAttribute("overview", view);
+	    model.addAttribute("pageMaker", pageMaker);
+	    	    
+	}
+
+	@RequestMapping(value = "/top_list_overview", method = RequestMethod.GET)
+	public void topMemberOverview(Model model) {
+		logger.info("topMemberOverview()...");
+		
+	}
+	
+	@RequestMapping(value = "/top_detail", method = RequestMethod.GET)
+	public void topMemberDetail(@RequestParam String studentNum, Model model) {
+		logger.info("topMemberDetail()...");
+		TopMember detail = service_top.getMemberInfo(studentNum);
+		model.addAttribute("detail", detail);
 	}
 	
 	@RequestMapping(value = "/top_update", method = RequestMethod.PUT)
-	public void topMemberUpdatePUT(TopMember newInfo) throws Exception {
+	public String topMemberUpdatePUT(TopMember newInfo, RedirectAttributes rttr) throws Exception {
 		logger.info("topMemberUpdatePUT()...");
 		service_top.update(newInfo);
+		rttr.addFlashAttribute("msg", "success_update");
+		return "redirect:/member/top_listAll";
 	}
 	
 	@RequestMapping(value = "/top_delete", method = RequestMethod.GET)
-	public void topMemberdelete() {
+	public String topMemberdelete(@RequestParam String studentNum, RedirectAttributes rttr) {
 		logger.info("memberDelete()...");
+		service_top.delete(studentNum);
+		rttr.addFlashAttribute("msg", "success_remove");
+		return "redirect:/member/top_listAll";
 	}
 	
-	@RequestMapping(value = "/top_document", method = RequestMethod.GET)
-	public void topMemberDocument() {
-		logger.info("topMemberDocument()...");
-	}
+//	@RequestMapping(value = "/top_document", method = RequestMethod.GET)
+//	public void topMemberDocument() {
+//		logger.info("topMemberDocument()...");
+//	}
 	
 
 }

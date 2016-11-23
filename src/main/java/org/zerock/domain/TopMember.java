@@ -118,6 +118,7 @@ public class TopMember {
 	public String getPrize() {
 		return prize;
 	}
+	
 
 
 	public void setPrize(String prize) {

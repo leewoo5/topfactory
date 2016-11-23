@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.zerock.domain.Overview;
+import org.zerock.domain.SearchCriteria;
 import org.zerock.domain.TopMember;
 import org.zerock.persistence.TopMemberDAO;
 
@@ -30,8 +32,30 @@ public class TopMemberServiceImple implements TopMemberService  {
 	}
 
 	@Override
-	public TopMember getMemberInfo() {
-		return dao.getMemberInfo();
+	public Overview overview() {
+		
+		return dao.overview();
+	}
+
+	@Override
+	public TopMember getMemberInfo(String studentNum) {
+		return dao.getMemberInfo(studentNum);
+		
+	}
+
+	@Override
+	public void delete(String studentNum) {
+		dao.delete(studentNum);
+	}
+
+	@Override
+	public List<TopMember> listSearchCriteria(SearchCriteria cri) {
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) {
+		return dao.listSearchCount(cri);
 	}
 
 

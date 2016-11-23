@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/page.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE> 
 <html>
 <head>
-<title>register.jsp</title>
-<%@ include file="../include/header.jsp" %>
+<title>top_register.jsp</title>
 <style type="text/css">
 * {border: 0px solid white;}
 body {background-color: #004466;}
@@ -27,7 +30,10 @@ input {margin-bottom: 10px;}
 				<h4 class="text-center">동아리 회원정보 등록</h4>
 				<form action="/member/top_register" role="form" method="post">
 					<label for="name">이름</label>
-					<input class="form-control" id="name" name="name" type="text" required="required" />
+					<input class="form-control" id="name" name="name" type="text" required="required"/>
+					
+					<label for="gender">성별</label>
+					<input class="form-control" id="gender" name="gender" type="text" required="required" />
 					
 					<label for="age">생년월일</label>
 					<input class="form-control" id="age" name="age" type="text" placeholder="예:19870910" required="required" />
