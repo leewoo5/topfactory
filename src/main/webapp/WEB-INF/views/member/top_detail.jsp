@@ -23,33 +23,35 @@ h3 {margin-bottom: 5%;}
 #backtohome{margin-top:5%;}
 li {margin-bottom: 5%;}
 .menulogo{width: 100%; height: 400;}
-li a:hover {
-      color: #1abc9c !important;
-      text-decoration: none;
-}
 .col-sm-10 input{border: 1px solid black; margin-bottom:10px;}
+.small-padding{padding:10px;}
+.btn-group-justified{margin-top: 30px;}
 </style>
 </head>
 <body>
-<%@ include file="../include/navbar.jsp" %>
-<c:if test="${user.uid == null }">
+<c:if test="${empty sessionScope.user}">
 	<script type="text/javascript">
 		alert("로그인이 필요합니다");
 		location.href = "/user/login";
 	</script>
 </c:if>
+<%@ include file="../include/navbar.jsp" %>
 	<img class="menulogo" alt="메뉴 로고" src="../resources/img/conference.jpg">
 	<div class="container-fluid">
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-2 sidenav">
 				<h3>Member</h3>
-				<ul class="form-control">
+				<ul class="container-fluid small-padding">
 					<li><a href="/member/top_listAll">회원명단 관리</a></li>
 					<li><a href="#">재무정보 관리</a></li>
 					<li><a href="#">업무 관리</a></li>
 					<li><a href="#">단체문자 전송</a></li>
 				</ul>
+				<h3>About Us</h3>
+			<h3>Activities</h3>
+			<h3>Database</h3>
+			<h3>Q&A</h3>
 			</div>
 			<div class="col-sm-6">
 				<div class="container-fluid no-padding">
@@ -57,7 +59,7 @@ li a:hover {
 						<div class="col-sm-1 sidenav"></div>
 						<div class="col-sm-10">
 							<h4 class="text-center">회원정보 관리</h4>
-							<form:form action="/member/top_update" method="put">
+							<form:form action="/member/top_update" method="PUT">
 								<label for="name">이름</label>
 								<input class="form-control" id="name" name="name" type="text"
 									required="required" value="${detail.name}" />
@@ -115,21 +117,10 @@ li a:hover {
 										<button type="submit" class="btn btn-primary btns">정보수정</button>
 									</div>
 									<div class="btn-group">
-										<a href="/member/top_delete?studentNum=${detail.studentNum}" class="btn btn-danger btns">회원삭제</a>
+										<a href="/member/top_delete?studentNum=${detail.studentNum}&name=${detail.name}" class="btn btn-danger btns">회원삭제</a>
 									</div>
 								</div>
 							</form:form>
-							<script>
-							var msg = ${msg};
-								if (msg == "success_remove") {
-									alert("성공적으로 삭제 되었습니다.");
-									location.href = "/member/top_listAll";
-								}
-								if (msg == "success_update") {
-									alert("성공적으로 수정 되었습니다.");
-									location.href = "/member/top_listAll";
-								}
-							</script>
 						</div>
 					</div>
 				</div>		

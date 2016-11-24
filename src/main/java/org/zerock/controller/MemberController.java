@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.Member;
+import org.zerock.domain.Msg;
 import org.zerock.domain.Overview;
 import org.zerock.domain.PageMaker;
 import org.zerock.domain.SearchCriteria;
 import org.zerock.domain.TopMember;
+import org.zerock.domain.User;
 import org.zerock.service.MemberService;
 import org.zerock.service.TopMemberService;
 
@@ -85,25 +88,23 @@ public class MemberController {
 	
 	@RequestMapping(value = "/top_detail", method = RequestMethod.GET)
 	public void topMemberDetail(@RequestParam String studentNum, Model model) {
-		logger.info("topMemberDetail()...");
+		logger.info("topMemberUpdate()...");
 		TopMember detail = service_top.getMemberInfo(studentNum);
 		model.addAttribute("detail", detail);
 	}
 	
-	@RequestMapping(value = "/top_update", method = RequestMethod.PUT)
-	public String topMemberUpdatePUT(TopMember newInfo, RedirectAttributes rttr) throws Exception {
+	@RequestMapping(value = "/top_update", method = RequestMethod.POST)
+	public void topMemberUpdatePUT(TopMember newInfo, Model model) throws Exception {
 		logger.info("topMemberUpdatePUT()...");
 		service_top.update(newInfo);
-		rttr.addFlashAttribute("msg", "success_update");
-		return "redirect:/member/top_listAll";
+		model.addAttribute("result", newInfo.getName());
 	}
 	
 	@RequestMapping(value = "/top_delete", method = RequestMethod.GET)
-	public String topMemberdelete(@RequestParam String studentNum, RedirectAttributes rttr) {
+	public void topMemberdelete(@RequestParam String studentNum,@RequestParam String name, Model model) {
 		logger.info("memberDelete()...");
 		service_top.delete(studentNum);
-		rttr.addFlashAttribute("msg", "success_remove");
-		return "redirect:/member/top_listAll";
+		model.addAttribute("result", name);
 	}
 	
 //	@RequestMapping(value = "/top_document", method = RequestMethod.GET)

@@ -25,6 +25,7 @@
 input{margin-bottom:5%;}
 .btn-group a{border-radius:0px;}
 a:hover{color: #1abc9c !important;}
+.btn-group-justified{margin-top:10px;}
 </style>
 </head>
 <body>
@@ -37,16 +38,16 @@ a:hover{color: #1abc9c !important;}
 					<div class="space"></div>
 					<form action="/member/form" role="form" method="post">
 						<label for="id">ID</label>
-						<input class="form-control" id="id" name="uid" type="text" value="dsa"/>
+						<input class="form-control" id="id" name="uid" type="text"/>
 						
 						<label for="pw">Password</label>
-						<input class="form-control" id="pw" name="upw" type="password" value="dsa"/>
+						<input class="form-control" id="pw" name="upw" type="password" />
 						
 						<label for="nickName">NickName</label>
-						<input class="form-control" id="nickName" name="nickName" type="text" value="dsa"/>
+						<input class="form-control" id="nickName" name="nickName" type="text" />
 						
 						<label for="email">Email</label>
-						<input class="form-control" id="email" name="email" type="email" value="dsa@gmail.com"/>
+						<input class="form-control" id="email" name="email" type="email" />
 			
 						<div class="btn-group btn-group-justified">
 							<div class="btn-group">
@@ -57,11 +58,6 @@ a:hover{color: #1abc9c !important;}
 							</div>
 						</div>
 					</form>
-					<div class="btn-group btn-group-justified">
-						<div class="btn-group">
-							<a id="backtohome" class="form-control text-center" href="#">메인으로 돌아가기</a>
-						</div>
-					</div>
 				
 				</div>
 			<div class="col-xs-1 col-sm-5 sidenav"></div>

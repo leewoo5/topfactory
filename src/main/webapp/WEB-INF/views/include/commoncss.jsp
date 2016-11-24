@@ -42,4 +42,11 @@ li a:hover {
 .row.content {height: 450px}
 li {list-style: none;}
 .form-control{border: none;}
+li a:hover {
+      color: #0086b3 !important;
+      text-decoration: none;
+}
+.fa-sign-in,.fa-sign-out{color: #1abc9c;}
+.fa-user-plus{color: #00ccff; }
+.fa-facebook{color: #3366ff;}
 </style>

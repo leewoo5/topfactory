@@ -40,13 +40,13 @@ a:hover{color: #1abc9c !important;}
 							<label for="id">ID</label> <input class="form-control" id="id"
 								name="uid" type="text" />
 							<c:if test="${not empty errorId}">
-								<a>${errorId}</a>
+								<p>${errorId}</p>
 							</c:if>
 
 							<label for="pw">Password</label> <input class="form-control"
 								id="pw" name="upw" type="password" />
 							<c:if test="${not empty errorPw}">
-								<a>${errorPw}</a>
+								<p>${errorPw}</p>
 							</c:if>
 
 							<div class="btn-group btn-group-justified">

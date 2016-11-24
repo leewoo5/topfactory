@@ -23,6 +23,14 @@ h3 {margin-bottom: 5%;}
 #backtohome{margin-top:5%;}
 li {margin-bottom: 5%;}
 .menulogo{width: 100%; height: 400;}
+th,td{text-align: center;}
+th{background-color: #bfbfbf;}
+td{background-color: #d9d9d9;}
+.no-padding{padding:0px;}
+select,input,button{height: 30px; margin-top:0px; }
+.searchBox{padding: 0px; margin-bottom:10%;}
+.btn-group a{padding:8px; font-size: 12px; text-decoration: none;}
+.btn-group-justified{margin-bottom:10px;}
 .small-padding{padding:10px;}
 </style>
 </head>
@@ -34,28 +42,38 @@ li {margin-bottom: 5%;}
 	</script>
 </c:if>
 <%@ include file="../include/navbar.jsp" %>
-<img class="menulogo" alt="메뉴 로고" src="../resources/img/conference.jpg">
-<div class="container-fluid">
-	<div class="row content">
-		<div class="col-sm-2 sidenav"></div>
-		<div class="col-sm-2 sidenav">
-			<h3>Member</h3>
-			<ul class="container-fluid small-padding">
-				<li><a href="/member/top_listAll">회원명단 관리</a></li>
-				<li><a href="#">재무정보 관리</a></li>
-				<li><a href="#">업무 관리</a></li>
-				<li><a href="#">단체문자 전송</a></li>
-			</ul>
-			<h3>About Us</h3>
-			<h3>Activities</h3>
-			<h3>Database</h3>
-			<h3>Q&A</h3>
+	<img class="menulogo" alt="메뉴 로고" src="../resources/img/conference.jpg">
+	<div class="container-fluid">
+		<div class="row content">
+			<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-2 sidenav">
+				<h3>About Us</h3>
+				<h3>Activities</h3>
+				<h3>Member</h3>
+				<ul class="container-fluid small-padding">
+					<li><a href="/member/top_listAll">회원명단 관리</a></li>
+					<li><a href="#">재무정보 관리</a></li>
+					<li><a href="#">업무 관리</a></li>
+					<li><a href="#">단체문자 전송</a></li>
+				</ul>
+				<h3>Database</h3>
+				<h3>Q&A</h3>
+			</div>
+			<div class="col-sm-6">
+				<div class="container-fluid no-padding">
+					<div class="row">
+						<div class="col-sm-1 sidenav"></div>
+						<div class="col-sm-10">
+							<img alt="동아리 소개" src="../resources/img/intro.png">
+						</div>
+						<div class="col-sm-1 sidenav"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2 sidenav"></div>
 		</div>
-		<div class="col-sm-6">
-		</div>
-		<div class="col-sm-2 sidenav"></div>
 	</div>
-</div>
+
 	<!-- Footer -->
 <%@ include file="../include/footer.jsp" %>
 </body>

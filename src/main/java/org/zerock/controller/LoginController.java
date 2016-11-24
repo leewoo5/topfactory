@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 import org.zerock.domain.User;
 import org.zerock.dto.LoginDTO;
 import org.zerock.service.UserService;
@@ -59,6 +62,16 @@ public class LoginController {
 		}
 	   
 	   return null;
+	}
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public void logoutGET(HttpSession session, Model model){
+		Object obj = session.getAttribute("user");
+		if (obj != null) {
+		  session.removeAttribute("user");
+		  session.invalidate();
+		  model.addAttribute("result", "success");
+		  
+		}
 	}
 
 }
